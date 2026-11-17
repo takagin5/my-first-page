@@ -18,18 +18,15 @@
 <section class="hero">
 <div class="eyebrow">YOUR FIRST STEP</div>
 <h1>相談の前に、<br>準備をひとつずつ。</h1>
-<p>用件を選ぶだけで、準備するものと聞いておきたいことが分かります。<br>落ち着いて相談できるように、一緒に整理しましょう。</p>
+<p>システム障害の報告や操作方法の問い合わせに必要な情報を整理できます。<br>落ち着いて相談できるように、一緒に整理しましょう。</p>
 <div class="progress"><span id="progressText">STEP 1 · 用件を選ぶ</span><div class="track"><div class="fill" id="progressFill"></div></div><span id="progressPercent">0%</span></div>
 </section>
 <main class="layout">
 <section class="panel">
-<h2>何について相談しますか？</h2><p class="sub">近いものをひとつ選んでください。</p>
+<h2>どのような問い合わせですか？</h2><p class="sub">問い合わせ内容に近いものを選んでください。</p>
 <div class="choices" id="choices">
-<button class="choice" data-type="service" aria-pressed="false"><span class="emoji">🧰</span><span><strong>サービス・内容について</strong><small>機能、利用方法、仕様など</small></span><span class="arrow">›</span></button>
-<button class="choice" data-type="price" aria-pressed="false"><span class="emoji">💴</span><span><strong>料金・見積もりについて</strong><small>費用、プラン、支払いなど</small></span><span class="arrow">›</span></button>
-<button class="choice" data-type="trouble" aria-pressed="false"><span class="emoji">🛠️</span><span><strong>不具合・トラブルについて</strong><small>エラー、故障、困りごとなど</small></span><span class="arrow">›</span></button>
-<button class="choice" data-type="contract" aria-pressed="false"><span class="emoji">📄</span><span><strong>契約・手続きについて</strong><small>申込、変更、解約など</small></span><span class="arrow">›</span></button>
-<button class="choice" data-type="other" aria-pressed="false"><span class="emoji">💬</span><span><strong>その他・まだ分からない</strong><small>まずは状況を相談したい</small></span><span class="arrow">›</span></button>
+<button class="choice" data-type="outage" aria-pressed="false"><span class="emoji">🚨</span><span><strong>システム障害・不具合</strong><small>エラー、停止、動作不良など</small></span><span class="arrow">›</span></button>
+<button class="choice" data-type="howto" aria-pressed="false"><span class="emoji">🖱️</span><span><strong>操作方法・設定について</strong><small>画面の使い方、設定、手順など</small></span><span class="arrow">›</span></button>
 </div>
 </section>
 <section class="panel" aria-live="polite">
@@ -40,7 +37,7 @@
 <div class="group"><h4>持っておくとスムーズなもの</h4><div class="checks" id="materials"></div></div>
 <div class="group"><h4>相談時に聞いておきたいこと</h4><div class="checks" id="questions"></div></div>
 <div class="note"><strong>💡 うまく説明できなくても大丈夫</strong><span id="tip"></span></div>
-<div class="field"><label for="memo">相談したいこと・状況メモ</label><textarea id="memo" placeholder="例：いつから、どんな場面で困っているか…"></textarea></div>
+<div class="field"><label for="memo">発生状況・操作したい内容のメモ</label><textarea id="memo" placeholder="例：発生時刻、対象システム、エラー内容、試した操作…"></textarea></div>
 <div class="field"><label for="confidence">準備の進み具合</label><div class="range-row"><span>これから</span><span class="range-value" id="rangeValue">50%</span><span>準備できた</span></div><input id="confidence" type="range" min="0" max="100" step="10" value="50"></div>
 <div class="actions"><button class="btn primary" id="copyBtn">準備メモをコピー</button><button class="btn secondary" id="resetBtn">最初からやり直す</button></div>
 </div>
@@ -51,11 +48,8 @@
 <div class="toast" id="toast" role="status">コピーしました</div>
 <script>
 const data={
-service:{title:"サービス・内容について",intro:"知りたいことや実現したいことを整理しておくと、案内がスムーズです。",materials:["利用中のサービス名・プラン名","現在の利用状況が分かる画面や資料","実現したいこと・使いたい場面のメモ","比較しているサービスや参考資料（あれば）"],questions:["自分の目的に合う機能・プランはどれか","利用開始までの流れと必要な準備は何か","利用上の制限や注意点はあるか","導入後のサポート・問い合わせ方法はどうなっているか"],tip:"「何をしたいか」「どこが分からないか」だけでも十分です。画面や資料があれば、見せながら相談できます。"},
-price:{title:"料金・見積もりについて",intro:"条件や希望予算を整理しておくと、具体的な見積もりを受け取りやすくなります。",materials:["希望するサービス・商品や数量","利用人数・期間・開始希望日","希望予算や想定している費用感","他社の見積もり・比較資料（あれば）"],questions:["初期費用と月額・継続費用はいくらか","追加料金が発生する条件は何か","見積もりの有効期限と支払い条件はどうなっているか","予算に合わせたプランや調整方法はあるか"],tip:"予算が決まっていなくても問題ありません。上限や「このくらいなら検討できる」という目安があると話しやすくなります。"},
-trouble:{title:"不具合・トラブルについて",intro:"発生した状況を時系列で整理すると、原因の確認が進みやすくなります。",materials:["発生した日時・頻度","表示されたエラーメッセージや画面のスクリーンショット","利用端末・OS・ブラウザなどの環境","試した対処方法と、その結果"],questions:["原因として考えられることは何か","すぐにできる回避策・復旧方法はあるか","データや利用環境への影響はあるか","解決までの目安と、次に連絡するタイミングはいつか"],tip:"再現手順が分からなくても大丈夫です。「いつから」「何をしたとき」「どうなったか」の3点から伝えてみましょう。"},
-contract:{title:"契約・手続きについて",intro:"契約内容と希望する変更時期を確認しておくと、必要な手続きを案内してもらえます。",materials:["契約者名・契約番号（分かる範囲で）","現在の契約内容・プランが分かる書類","希望する手続き内容と希望日","本人確認や申請に必要そうな書類（案内がある場合）"],questions:["手続きに必要な書類・申請方法は何か","変更が反映される時期はいつか","手数料・違約金などの費用は発生するか","手続き後に必要な対応や注意点はあるか"],tip:"契約番号などがすぐに分からなくても、まずは相談できます。個人情報や本人確認書類は、案内された正式な窓口でのみ提示してください。"},
-other:{title:"その他・まだ分からない",intro:"相談したいことが整理できていなくても大丈夫。分かる範囲で状況を共有しましょう。",materials:["相談したいと思ったきっかけ","困っていること・気になっていることのメモ","関係しそうな資料や画面（あれば）","いつまでに解決したいか・希望する状態"],questions:["この内容はどの窓口・担当に相談すればよいか","解決に向けて、まず何を確認すればよいか","追加で用意した方がよい情報や資料はあるか","次に取るべき行動と目安の時期は何か"],tip:"話がまとまっていなくても問題ありません。「ちょっと困っている」「こうなったらうれしい」から始めてみましょう。"}
+outage:{title:"システム障害・不具合",intro:"発生状況と影響範囲を整理しておくと、原因調査と復旧対応がスムーズになります。",materials:["発生した日時・最後に正常利用できた時刻","対象のシステム名・機能名・利用していたURL","表示されたエラー文言・エラーコード・画面のスクリーンショット","影響を受けているユーザー・部署・業務と発生範囲","発生直前に行った操作や変更、試した対処とその結果"],questions:["現在、障害は確認されているか。影響範囲はどこまでか","業務を継続するための回避策や代替手段はあるか","復旧の見込みと、次回の状況報告はいつか","データの消失・重複・不整合が発生していないか","利用者側で追加確認・操作してよいこと、避けるべきことは何か"],tip:"再起動や設定変更を行う前に、エラー画面・発生時刻・操作内容を記録してください。パスワードや認証コードなどの秘密情報はメモに含めないでください。"},
+howto:{title:"操作方法・設定について",intro:"やりたいことと、今どの画面で止まっているかを整理すると、必要な操作を案内してもらいやすくなります。",materials:["利用しているシステム名・画面名・機能名","実現したい作業や設定内容（ゴール）","操作している端末・OS・ブラウザ","現在表示している画面のスクリーンショット（個人情報は隠す）","試した操作と、分からなくなった手順・表示内容"],questions:["目的の操作を行う正しい手順は何か","必要な権限・アカウント・事前設定はあるか","設定を変更した場合、他の利用者や既存データに影響するか","操作を誤った場合に元に戻す方法はあるか","マニュアルや次回確認できるヘルプページはあるか"],tip:"「何をしたいか」「どの画面まで進めたか」「どこで迷ったか」の順に伝えると説明しやすくなります。画面共有や画像を使う場合は、個人情報や機密情報を隠してください。"}
 };
 const choices=[...document.querySelectorAll(".choice")],empty=document.getElementById("empty"),result=document.getElementById("result");
 let selected=null;
@@ -65,7 +59,7 @@ function updateProgress(){if(!selected)return;const total=document.querySelector
 choices.forEach(b=>b.addEventListener("click",()=>choose(b.dataset.type)));
 document.getElementById("confidence").addEventListener("input",e=>document.getElementById("rangeValue").textContent=e.target.value+"%");
 document.getElementById("resetBtn").addEventListener("click",()=>{selected=null;choices.forEach(b=>b.setAttribute("aria-pressed","false"));result.style.display="none";empty.style.display="grid";document.getElementById("progressFill").style.width="0";document.getElementById("progressText").textContent="STEP 1 · 用件を選ぶ";document.getElementById("progressPercent").textContent="0%";document.getElementById("stepBadge").textContent="未選択"});
-document.getElementById("copyBtn").addEventListener("click",async()=>{if(!selected)return;const d=data[selected];const list=id=>[...document.querySelectorAll("#"+id+" .check")].map(x=>(x.querySelector("input").checked?"☑ ":"☐ ")+x.querySelector("span").textContent).join("\n");const text="【相談前の準備メモ】\n用件："+d.title+"\n\n■ 準備するもの\n"+list("materials")+"\n\n■ 聞いておくこと\n"+list("questions")+"\n\n■ 相談メモ\n"+document.getElementById("memo").value+"\n\n準備の進み具合："+document.getElementById("confidence").value+"%";try{await navigator.clipboard.writeText(text);showToast("準備メモをコピーしました")}catch(e){const area=document.createElement("textarea");area.value=text;document.body.append(area);area.select();document.execCommand("copy");area.remove();showToast("準備メモをコピーしました")}});
+document.getElementById("copyBtn").addEventListener("click",async()=>{if(!selected)return;const d=data[selected];const list=id=>[...document.querySelectorAll("#"+id+" .check")].map(x=>(x.querySelector("input").checked?"☑ ":"☐ ")+x.querySelector("span").textContent).join("\n");const text="【システム問い合わせ準備メモ】\n用件："+d.title+"\n\n■ 準備するもの\n"+list("materials")+"\n\n■ 聞いておくこと\n"+list("questions")+"\n\n■ 状況・操作メモ\n"+document.getElementById("memo").value+"\n\n準備の進み具合："+document.getElementById("confidence").value+"%";try{await navigator.clipboard.writeText(text);showToast("準備メモをコピーしました")}catch(e){const area=document.createElement("textarea");area.value=text;document.body.append(area);area.select();document.execCommand("copy");area.remove();showToast("準備メモをコピーしました")}});
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
 </script>
 </body>
